@@ -1,6 +1,7 @@
 # Baum
 
-[![Build Status](https://travis-ci.com/poing/baum.svg?branch=1.0)](https://travis-ci.com/poing/baum)![Maintenance](https://img.shields.io/maintenance/no/2014.svg)
+[![Build Status](https://travis-ci.com/poing/baum.svg?branch=1.0)](https://travis-ci.com/poing/baum)
+![Maintenance](https://img.shields.io/maintenance/no/2014.svg)
 
 Baum is an implementation of the [Nested Set](http://en.wikipedia.org/wiki/Nested_set_model)
 pattern for [Laravel 4's](http://laravel.com/) Eloquent ORM.
