@@ -52,7 +52,7 @@ class CategoryTreeRebuildingTest extends CategoryTestCase
     {
         MultiScopedCategory::query()->delete();
 
-        $root = MultiScopedCategory::create(['name' => 'A', 'company_id' => 721, 'language' => 'es']);
+        $root   = MultiScopedCategory::create(['name' => 'A', 'company_id' => 721, 'language' => 'es']);
         $child1 = MultiScopedCategory::create(['name' => 'A.1', 'company_id' => 721, 'language' => 'es']);
         $child2 = MultiscopedCategory::create(['name' => 'A.2', 'company_id' => 721, 'language' => 'es']);
 
@@ -67,10 +67,10 @@ class CategoryTreeRebuildingTest extends CategoryTestCase
 
         $this->assertEquals($root->getAttributes(), $this->categories('A', 'MultiScopedCategory')->getAttributes());
 
-    // Compare attributes, not objects
-    $expected = array_map(function ($item) {
-        return $item->getAttributes();
-    }, [$child1, $child2]);
+        // Compare attributes, not objects
+        $expected = array_map(function ($item) {
+            return $item->getAttributes();
+        }, [$child1, $child2]);
 
         $children = $this->categories('A', 'MultiScopedCategory')->children()->get()->all();
         $children = array_map(function ($item) {
@@ -84,13 +84,13 @@ class CategoryTreeRebuildingTest extends CategoryTestCase
     {
         MultiScopedCategory::query()->delete();
 
-        $root1 = MultiScopedCategory::create(['name' => 'TL1', 'company_id' => 1, 'language' => 'en']);
+        $root1   = MultiScopedCategory::create(['name' => 'TL1', 'company_id' => 1, 'language' => 'en']);
         $child11 = MultiScopedCategory::create(['name' => 'C11', 'company_id' => 1, 'language' => 'en']);
         $child12 = MultiScopedCategory::create(['name' => 'C12', 'company_id' => 1, 'language' => 'en']);
         $child11->makeChildOf($root1);
         $child12->makeChildOf($root1);
 
-        $root2 = MultiScopedCategory::create(['name' => 'TL2', 'company_id' => 2, 'language' => 'en']);
+        $root2   = MultiScopedCategory::create(['name' => 'TL2', 'company_id' => 2, 'language' => 'en']);
         $child21 = MultiScopedCategory::create(['name' => 'C21', 'company_id' => 2, 'language' => 'en']);
         $child22 = MultiScopedCategory::create(['name' => 'C22', 'company_id' => 2, 'language' => 'en']);
         $child21->makeChildOf($root2);

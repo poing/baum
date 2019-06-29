@@ -25,6 +25,7 @@ class SetMapper
      * Create a new \Baum\SetBuilder class instance.
      *
      * @param \Baum\Node $node
+     * @param mixed      $childrenKeyName
      *
      * @return void
      */
@@ -39,6 +40,7 @@ class SetMapper
      * Maps a tree structure into the database. Unguards & wraps in transaction.
      *
      * @param   array|\Illuminate\Support\Contracts\ArrayableInterface
+     * @param mixed $nodeList
      *
      * @return bool
      */
@@ -60,6 +62,7 @@ class SetMapper
      * inside a transaction.
      *
      * @param   array|\Illuminate\Support\Contracts\ArrayableInterface
+     * @param mixed $nodeList
      *
      * @return bool
      */
@@ -91,8 +94,10 @@ class SetMapper
     /**
      * Maps a tree structure into the database.
      *
-     * @param array $tree
-     * @param mixed $parent
+     * @param array      $tree
+     * @param mixed      $parent
+     * @param null|mixed $parentKey
+     * @param mixed      $affectedKeys
      *
      * @return bool
      */

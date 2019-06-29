@@ -16,8 +16,8 @@ class CategoryCustomEventsTest extends CategoryTestCase
 
         $child = $this->categories('Child 1');
 
-        $events->shouldReceive('until')->once()->with('eloquent.moving: '.get_class($child), $child)->andReturn(true);
-        $events->shouldReceive('fire')->once()->with('eloquent.moved: '.get_class($child), $child)->andReturn(true);
+        $events->shouldReceive('until')->once()->with('eloquent.moving: ' . get_class($child), $child)->andReturn(true);
+        $events->shouldReceive('fire')->once()->with('eloquent.moved: ' . get_class($child), $child)->andReturn(true);
 
         $child->moveToRightOf($this->categories('Child 3'));
 
@@ -32,12 +32,12 @@ class CategoryCustomEventsTest extends CategoryTestCase
         $dispatcher = Category::getEventDispatcher();
 
         Category::setEventDispatcher($events = m::mock('Illuminate\Events\Dispatcher[until]'));
-        $events->shouldReceive('until')->once()->with('eloquent.moving: '.get_class($unchanged), $unchanged)->andReturn(false);
+        $events->shouldReceive('until')->once()->with('eloquent.moving: ' . get_class($unchanged), $unchanged)->andReturn(false);
 
-    // Force "moving" to return false
-    Category::moving(function ($node) {
-        return false;
-    });
+        // Force "moving" to return false
+        Category::moving(function ($node) {
+            return false;
+        });
 
         $unchanged->makeRoot();
 
@@ -48,8 +48,8 @@ class CategoryCustomEventsTest extends CategoryTestCase
         $this->assertEquals(4, $unchanged->getLeft());
         $this->assertEquals(7, $unchanged->getRight());
 
-    // Restore
-    Category::getEventDispatcher()->forget('eloquent.moving: '.get_class($unchanged));
+        // Restore
+        Category::getEventDispatcher()->forget('eloquent.moving: ' . get_class($unchanged));
 
         Category::unsetEventDispatcher();
         Category::setEventDispatcher($dispatcher);

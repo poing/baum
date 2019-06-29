@@ -22,9 +22,9 @@ class CategorySeeder
         if (DB::connection()->getDriverName() === 'pgsql') {
             $tablePrefix = DB::connection()->getTablePrefix();
 
-            $sequenceName = $tablePrefix.'categories_id_seq';
+            $sequenceName = $tablePrefix . 'categories_id_seq';
 
-            DB::connection()->statement('ALTER SEQUENCE '.$sequenceName.' RESTART WITH 7');
+            DB::connection()->statement('ALTER SEQUENCE ' . $sequenceName . ' RESTART WITH 7');
         }
     }
 
@@ -60,9 +60,9 @@ class ScopedCategorySeeder
         ScopedCategory::reguard();
 
         if (DB::connection()->getDriverName() === 'pgsql') {
-            $tablePrefix = DB::connection()->getTablePrefix();
-            $sequenceName = $tablePrefix.'categories_id_seq';
-            DB::connection()->statement('ALTER SEQUENCE '.$sequenceName.' RESTART WITH 11');
+            $tablePrefix  = DB::connection()->getTablePrefix();
+            $sequenceName = $tablePrefix . 'categories_id_seq';
+            DB::connection()->statement('ALTER SEQUENCE ' . $sequenceName . ' RESTART WITH 11');
         }
     }
 }
@@ -101,9 +101,9 @@ class MultiScopedCategorySeeder
         if (DB::connection()->getDriverName() === 'pgsql') {
             $tablePrefix = DB::connection()->getTablePrefix();
 
-            $sequenceName = $tablePrefix.'categories_id_seq';
+            $sequenceName = $tablePrefix . 'categories_id_seq';
 
-            DB::connection()->statement('ALTER SEQUENCE '.$sequenceName.' RESTART WITH 21');
+            DB::connection()->statement('ALTER SEQUENCE ' . $sequenceName . ' RESTART WITH 21');
         }
     }
 }
@@ -128,9 +128,9 @@ class OrderedCategorySeeder
         if (DB::connection()->getDriverName() === 'pgsql') {
             $tablePrefix = DB::connection()->getTablePrefix();
 
-            $sequenceName = $tablePrefix.'categories_id_seq';
+            $sequenceName = $tablePrefix . 'categories_id_seq';
 
-            DB::connection()->statement('ALTER SEQUENCE '.$sequenceName.' RESTART WITH 7');
+            DB::connection()->statement('ALTER SEQUENCE ' . $sequenceName . ' RESTART WITH 7');
         }
     }
 }
@@ -160,9 +160,9 @@ class OrderedScopedCategorySeeder
         if (DB::connection()->getDriverName() === 'pgsql') {
             $tablePrefix = DB::connection()->getTablePrefix();
 
-            $sequenceName = $tablePrefix.'categories_id_seq';
+            $sequenceName = $tablePrefix . 'categories_id_seq';
 
-            DB::connection()->statement('ALTER SEQUENCE '.$sequenceName.' RESTART WITH 11');
+            DB::connection()->statement('ALTER SEQUENCE ' . $sequenceName . ' RESTART WITH 11');
         }
     }
 }
