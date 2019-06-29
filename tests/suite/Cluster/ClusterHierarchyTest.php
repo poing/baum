@@ -4,7 +4,7 @@ class ClusterHierarchyTest extends ClusterTestCase
 {
     public function testAllStatic()
     {
-        $results = Cluster::all();
+        $results  = Cluster::all();
         $expected = Cluster::query()->orderBy('lft')->get();
 
         $this->assertEquals($results, $expected);
@@ -12,7 +12,7 @@ class ClusterHierarchyTest extends ClusterTestCase
 
     public function testAllStaticWithCustomOrder()
     {
-        $results = OrderedCluster::all();
+        $results  = OrderedCluster::all();
         $expected = OrderedCluster::query()->orderBy('name')->get();
 
         $this->assertEquals($results, $expected);
@@ -37,7 +37,7 @@ class ClusterHierarchyTest extends ClusterTestCase
         $cluster = OrderedCluster::create(['name' => 'A new root is born']);
         $cluster->syncOriginal(); // ¿? --> This should be done already !?
 
-    $roots = OrderedCluster::roots()->get();
+        $roots = OrderedCluster::roots()->get();
 
         $this->assertCount(3, $roots);
         $this->assertEquals($cluster->getAttributes(), $roots->first()->getAttributes());
@@ -414,8 +414,8 @@ class ClusterHierarchyTest extends ClusterTestCase
         $b = Cluster::create(['name' => 'B']);
         $c = Cluster::create(['name' => 'C']);
 
-    // a > b > c
-    $b->makeChildOf($a);
+        // a > b > c
+        $b->makeChildOf($a);
         $c->makeChildOf($b);
 
         $a->reload();
@@ -458,14 +458,14 @@ class ClusterHierarchyTest extends ClusterTestCase
         $this->assertFalse($this->clusters('Child 1')->isAncestorOf($this->clusters('Child 1')));
     }
 
-		public function testIsChildOf()
-		{
+    public function testIsChildOf()
+    {
         $this->assertTrue($this->clusters('Child 1')->isChildOf($this->clusters('Root 1')));
         $this->assertTrue($this->clusters('Child 2')->isChildOf($this->clusters('Root 1')));
         $this->assertTrue($this->clusters('Child 2.1')->isChildOf($this->clusters('Child 2')));
         $this->assertFalse($this->clusters('Child 2.1')->isChildOf($this->clusters('Root 1')));
         $this->assertFalse($this->clusters('Child 2.1')->isChildOf($this->clusters('Child 1')));
-		}
+    }
 
     public function testIsSelfOrDescendantOf()
     {
@@ -597,27 +597,27 @@ class ClusterHierarchyTest extends ClusterTestCase
     public function testToHierarchyNestsCorrectly()
     {
         // Prune all categories
-    Cluster::query()->delete();
+        Cluster::query()->delete();
 
-    // Build a sample tree structure:
-    //
-    //   - A
-    //     |- A.1
-    //     |- A.2
-    //   - B
-    //     |- B.1
-    //     |- B.2
-    //         |- B.2.1
-    //         |- B.2.2
-    //           |- B.2.2.1
-    //         |- B.2.3
-    //     |- B.3
-    //   - C
-    //     |- C.1
-    //     |- C.2
-    //   - D
-    //
-    $a = Cluster::create(['name' => 'A']);
+        // Build a sample tree structure:
+        //
+        //   - A
+        //     |- A.1
+        //     |- A.2
+        //   - B
+        //     |- B.1
+        //     |- B.2
+        //         |- B.2.1
+        //         |- B.2.2
+        //           |- B.2.2.1
+        //         |- B.2.3
+        //     |- B.3
+        //   - C
+        //     |- C.1
+        //     |- C.2
+        //   - D
+        //
+        $a = Cluster::create(['name' => 'A']);
         $b = Cluster::create(['name' => 'B']);
         $c = Cluster::create(['name' => 'C']);
         $d = Cluster::create(['name' => 'D']);
@@ -657,8 +657,8 @@ class ClusterHierarchyTest extends ClusterTestCase
 
         $this->assertTrue(Cluster::isValidNestedSet());
 
-    // Build expectations (expected trees/subtrees)
-    $expectedWholeTree = [
+        // Build expectations (expected trees/subtrees)
+        $expectedWholeTree = [
       'A' => ['A.1' => null, 'A.2' => null],
       'B' => [
         'B.1' => null,
@@ -691,8 +691,8 @@ class ClusterHierarchyTest extends ClusterTestCase
 
         $expectedSubtreeD = ['D' => null];
 
-    // Perform assertions
-    $wholeTree = hmap(Cluster::all()->toHierarchy()->toArray());
+        // Perform assertions
+        $wholeTree = hmap(Cluster::all()->toHierarchy()->toArray());
         $this->assertArraysAreEqual($expectedWholeTree, $wholeTree);
 
         $subtreeA = hmap($this->clusters('A')->getDescendantsAndSelf()->toHierarchy()->toArray());
@@ -757,16 +757,16 @@ class ClusterHierarchyTest extends ClusterTestCase
 
     public function testGetNestedList()
     {
-        $seperator = ' ';
+        $seperator  = ' ';
         $nestedList = Cluster::getNestedList('name', 'id', $seperator);
 
         $expected = [
-      '7461d8f5-2ea9-4788-99c4-9d0244f0bfb1' => str_repeat($seperator, 0).'Root 1',
-      '5d7ce1fd-6151-46d3-a5b3-0ebb9988dc57' => str_repeat($seperator, 1).'Child 1',
-      '07c1fc8c-53b5-4fe7-b9c4-e09f266a455c' => str_repeat($seperator, 1).'Child 2',
-      '3315a297-af87-4ad3-9fa5-19785407573d' => str_repeat($seperator, 2).'Child 2.1',
-      '054476d2-6830-4014-a181-4de010ef7114' => str_repeat($seperator, 1).'Child 3',
-      '3bb62314-9e1e-49c6-a5cb-17a9ab9b1b9a' => str_repeat($seperator, 0).'Root 2',
+      '7461d8f5-2ea9-4788-99c4-9d0244f0bfb1' => str_repeat($seperator, 0) . 'Root 1',
+      '5d7ce1fd-6151-46d3-a5b3-0ebb9988dc57' => str_repeat($seperator, 1) . 'Child 1',
+      '07c1fc8c-53b5-4fe7-b9c4-e09f266a455c' => str_repeat($seperator, 1) . 'Child 2',
+      '3315a297-af87-4ad3-9fa5-19785407573d' => str_repeat($seperator, 2) . 'Child 2.1',
+      '054476d2-6830-4014-a181-4de010ef7114' => str_repeat($seperator, 1) . 'Child 3',
+      '3bb62314-9e1e-49c6-a5cb-17a9ab9b1b9a' => str_repeat($seperator, 0) . 'Root 2',
     ];
 
         $this->assertArraysAreEqual($expected, $nestedList);
@@ -774,17 +774,17 @@ class ClusterHierarchyTest extends ClusterTestCase
 
     public function testGetNestedListSymbol()
     {
-        $symbol = '- ';
-        $seperator = ' ';
+        $symbol     = '- ';
+        $seperator  = ' ';
         $nestedList = Cluster::getNestedList('name', 'id', $seperator, $symbol);
 
         $expected = [
-      '7461d8f5-2ea9-4788-99c4-9d0244f0bfb1' => str_repeat($seperator, 0).$symbol.'Root 1',
-      '5d7ce1fd-6151-46d3-a5b3-0ebb9988dc57' => str_repeat($seperator, 1).$symbol.'Child 1',
-      '07c1fc8c-53b5-4fe7-b9c4-e09f266a455c' => str_repeat($seperator, 1).$symbol.'Child 2',
-      '3315a297-af87-4ad3-9fa5-19785407573d' => str_repeat($seperator, 2).$symbol.'Child 2.1',
-      '054476d2-6830-4014-a181-4de010ef7114' => str_repeat($seperator, 1).$symbol.'Child 3',
-      '3bb62314-9e1e-49c6-a5cb-17a9ab9b1b9a' => str_repeat($seperator, 0).$symbol.'Root 2',
+      '7461d8f5-2ea9-4788-99c4-9d0244f0bfb1' => str_repeat($seperator, 0) . $symbol . 'Root 1',
+      '5d7ce1fd-6151-46d3-a5b3-0ebb9988dc57' => str_repeat($seperator, 1) . $symbol . 'Child 1',
+      '07c1fc8c-53b5-4fe7-b9c4-e09f266a455c' => str_repeat($seperator, 1) . $symbol . 'Child 2',
+      '3315a297-af87-4ad3-9fa5-19785407573d' => str_repeat($seperator, 2) . $symbol . 'Child 2.1',
+      '054476d2-6830-4014-a181-4de010ef7114' => str_repeat($seperator, 1) . $symbol . 'Child 3',
+      '3bb62314-9e1e-49c6-a5cb-17a9ab9b1b9a' => str_repeat($seperator, 0) . $symbol . 'Root 2',
     ];
 
         $this->assertArraysAreEqual($expected, $nestedList);

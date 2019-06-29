@@ -4,7 +4,7 @@ class CategoryHierarchyTest extends CategoryTestCase
 {
     public function testAllStatic()
     {
-        $results = Category::all();
+        $results  = Category::all();
         $expected = Category::query()->orderBy('lft')->get();
 
         $this->assertEquals($results, $expected);
@@ -12,7 +12,7 @@ class CategoryHierarchyTest extends CategoryTestCase
 
     public function testAllStaticSomeColumns()
     {
-        $results = Category::all(['id', 'name'])->toArray();
+        $results  = Category::all(['id', 'name'])->toArray();
         $expected = Category::query()->select(['id', 'name'])->orderBy('lft')->get()->toArray();
 
         $this->assertEquals($results, $expected);
@@ -20,7 +20,7 @@ class CategoryHierarchyTest extends CategoryTestCase
 
     public function testAllStaticWithCustomOrder()
     {
-        $results = OrderedCategory::all();
+        $results  = OrderedCategory::all();
         $expected = OrderedCategory::query()->orderBy('name')->get();
 
         $this->assertEquals($results, $expected);
@@ -45,7 +45,7 @@ class CategoryHierarchyTest extends CategoryTestCase
         $category = OrderedCategory::create(['name' => 'A new root is born']);
         $category->syncOriginal(); // ¿? --> This should be done already !?
 
-    $roots = OrderedCategory::roots()->get();
+        $roots = OrderedCategory::roots()->get();
 
         $this->assertCount(3, $roots);
         $this->assertEquals($category->getAttributes(), $roots->first()->getAttributes());
@@ -416,8 +416,8 @@ class CategoryHierarchyTest extends CategoryTestCase
         $b = Category::create(['name' => 'B']);
         $c = Category::create(['name' => 'C']);
 
-    // a > b > c
-    $b->makeChildOf($a);
+        // a > b > c
+        $b->makeChildOf($a);
         $c->makeChildOf($b);
 
         $a->reload();
@@ -590,27 +590,27 @@ class CategoryHierarchyTest extends CategoryTestCase
     public function testToHierarchyNestsCorrectly()
     {
         // Prune all categories
-    Category::query()->delete();
+        Category::query()->delete();
 
-    // Build a sample tree structure:
-    //
-    //   - A
-    //     |- A.1
-    //     |- A.2
-    //   - B
-    //     |- B.1
-    //     |- B.2
-    //         |- B.2.1
-    //         |- B.2.2
-    //           |- B.2.2.1
-    //         |- B.2.3
-    //     |- B.3
-    //   - C
-    //     |- C.1
-    //     |- C.2
-    //   - D
-    //
-    $a = Category::create(['name' => 'A']);
+        // Build a sample tree structure:
+        //
+        //   - A
+        //     |- A.1
+        //     |- A.2
+        //   - B
+        //     |- B.1
+        //     |- B.2
+        //         |- B.2.1
+        //         |- B.2.2
+        //           |- B.2.2.1
+        //         |- B.2.3
+        //     |- B.3
+        //   - C
+        //     |- C.1
+        //     |- C.2
+        //   - D
+        //
+        $a = Category::create(['name' => 'A']);
         $b = Category::create(['name' => 'B']);
         $c = Category::create(['name' => 'C']);
         $d = Category::create(['name' => 'D']);
@@ -650,8 +650,8 @@ class CategoryHierarchyTest extends CategoryTestCase
 
         $this->assertTrue(Category::isValidNestedSet());
 
-    // Build expectations (expected trees/subtrees)
-    $expectedWholeTree = [
+        // Build expectations (expected trees/subtrees)
+        $expectedWholeTree = [
       'A' => ['A.1' => null, 'A.2' => null],
       'B' => [
         'B.1' => null,
@@ -684,8 +684,8 @@ class CategoryHierarchyTest extends CategoryTestCase
 
         $expectedSubtreeD = ['D' => null];
 
-    // Perform assertions
-    $wholeTree = hmap(Category::all()->toHierarchy()->toArray());
+        // Perform assertions
+        $wholeTree = hmap(Category::all()->toHierarchy()->toArray());
         $this->assertArraysAreEqual($expectedWholeTree, $wholeTree);
 
         $subtreeA = hmap($this->categories('A')->getDescendantsAndSelf()->toHierarchy()->toArray());
@@ -751,16 +751,16 @@ class CategoryHierarchyTest extends CategoryTestCase
 
     public function testGetNestedList()
     {
-        $seperator = ' ';
+        $seperator  = ' ';
         $nestedList = Category::getNestedList('name', 'id', $seperator);
 
         $expected = [
-      1 => str_repeat($seperator, 0).'Root 1',
-      2 => str_repeat($seperator, 1).'Child 1',
-      3 => str_repeat($seperator, 1).'Child 2',
-      4 => str_repeat($seperator, 2).'Child 2.1',
-      5 => str_repeat($seperator, 1).'Child 3',
-      6 => str_repeat($seperator, 0).'Root 2',
+      1 => str_repeat($seperator, 0) . 'Root 1',
+      2 => str_repeat($seperator, 1) . 'Child 1',
+      3 => str_repeat($seperator, 1) . 'Child 2',
+      4 => str_repeat($seperator, 2) . 'Child 2.1',
+      5 => str_repeat($seperator, 1) . 'Child 3',
+      6 => str_repeat($seperator, 0) . 'Root 2',
     ];
 
         $this->assertArraysAreEqual($expected, $nestedList);
@@ -768,17 +768,17 @@ class CategoryHierarchyTest extends CategoryTestCase
 
     public function testGetNestedListSymbol()
     {
-        $symbol = '- ';
-        $seperator = ' ';
+        $symbol     = '- ';
+        $seperator  = ' ';
         $nestedList = Category::getNestedList('name', 'id', $seperator, $symbol);
 
         $expected = [
-      1 => str_repeat($seperator, 0).$symbol.'Root 1',
-      2 => str_repeat($seperator, 1).$symbol.'Child 1',
-      3 => str_repeat($seperator, 1).$symbol.'Child 2',
-      4 => str_repeat($seperator, 2).$symbol.'Child 2.1',
-      5 => str_repeat($seperator, 1).$symbol.'Child 3',
-      6 => str_repeat($seperator, 0).$symbol.'Root 2',
+      1 => str_repeat($seperator, 0) . $symbol . 'Root 1',
+      2 => str_repeat($seperator, 1) . $symbol . 'Child 1',
+      3 => str_repeat($seperator, 1) . $symbol . 'Child 2',
+      4 => str_repeat($seperator, 2) . $symbol . 'Child 2.1',
+      5 => str_repeat($seperator, 1) . $symbol . 'Child 3',
+      6 => str_repeat($seperator, 0) . $symbol . 'Root 2',
     ];
 
         $this->assertArraysAreEqual($expected, $nestedList);

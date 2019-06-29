@@ -38,7 +38,7 @@ class Collection extends BaseCollection
 
             if (!is_null($parentKey) && array_key_exists($parentKey, $result)) {
                 $result[$parentKey]->children[] = $node;
-                $nestedKeys[] = $node->getKey();
+                $nestedKeys[]                   = $node->getKey();
             }
         }
 
