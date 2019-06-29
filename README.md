@@ -1,5 +1,8 @@
 # Baum <a href="https://travis-ci.org/gazsp/baum"><img src="https://travis-ci.org/gazsp/baum.svg?branch=master"></a> [![Coverage Status](https://coveralls.io/repos/gazsp/baum/badge.svg?branch=master&service=github)](https://coveralls.io/github/gazsp/baum?branch=master) [![StyleCI](https://styleci.io/repos/47506280/shield)](https://styleci.io/repos/47506280)
 
+[![Build Status](https://travis-ci.com/poing/baum.svg?branch=master)](https://travis-ci.com/poing/baum)
+[![Coverage Status](https://coveralls.io/repos/github/poing/baum/badge.svg?branch=master)](https://coveralls.io/github/poing/baum?branch=master)
+
 ## Forked from [etrepat/baum](https://github.com/etrepat/baum) - Continuing development and fixing failing unit tests for Laravel 5.x (Currently supports Laravel 5.2 - 5.4)
 
 ### Version 2.0 supporting Laravel 5.5, traits, etc is *in progress*. Please check the [feature/2.0](https://github.com/gazsp/baum/tree/feature/2.0) branch for more info.
