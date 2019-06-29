@@ -13,8 +13,7 @@ env:
   
 
 before_install:
- - composer require "illuminate/support:${ILLUMINATE_VERSION}" --no-update --prefer-dist
-
+  - composer require "illuminate/support:${ILLUMINATE}" --no-update --prefer-dist
   - composer require "illuminate/console:${ILLUMINATE}" --prefer-dist --no-update
   - composer require "illuminate/database:${ILLUMINATE}" --prefer-dist --no-update
   - composer require "illuminate/events:${ILLUMINATE}" --prefer-dist --no-update
