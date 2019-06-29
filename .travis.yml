@@ -3,16 +3,16 @@ language: php
 php:
   - 5.5.9
   - 5.6 # Version 5.6.40 | End of Life: 10 Jan 2019
-  - 7.0 # Version 7.0.33 | End of Life: 10 Jan 2019
+  # - 7.0 # Version 7.0.33 | End of Life: 10 Jan 2019
   #- 7.1
   #- 7.2
   #- 7.3
   #- hhvm
 
 env:
-  #- ILLUMINATE=5.2.*
-  #- ILLUMINATE=5.3.*
-  - ILLUMINATE=5.4.*
+  - ILLUMINATE=5.2.*
+  - ILLUMINATE=5.3.*
+  - ILLUMINATE=5.4.36
   #- ILLUMINATE=5.5.*
   #- ILLUMINATE=5.6.*
   #- ILLUMINATE=5.7.*
@@ -27,7 +27,7 @@ before_install:
   - composer require "illuminate/database:${ILLUMINATE}" --prefer-dist --no-update
   - composer require "illuminate/events:${ILLUMINATE}" --prefer-dist --no-update
   - composer require "illuminate/filesystem:${ILLUMINATE}" --prefer-dist --no-update
-  - composer require "illuminate/support:${ILLUMINATE}" --prefer-dist --no-update
+  - composer require "illuminate/support:${ILLUMINATE}" --prefer-dist --no-update  
 
 # optionally set up exclusions and allowed failures in the matrix
 matrix:
@@ -35,7 +35,7 @@ matrix:
     - php: 5.5.9
       env: ILLUMINATE=5.3.*
     - php: 5.5.9
-      env: ILLUMINATE=5.4.*
+      env: ILLUMINATE=5.4.36
 #  allow_failures:
     - php: 5.5.9
       env: ILLUMINATE=dev-master
