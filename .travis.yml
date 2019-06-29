@@ -8,7 +8,7 @@ php:
 
 env:
   - ILLUMINATE=5.2.*
-  - ILLUMINATE=5.2.0-5.4.36
+  - ILLUMINATE='5.2.0 - 5.4.36'
   #- ILLUMINATE=5.4.*
   
 
