@@ -12,6 +12,7 @@ php:
 env:
   - ILLUMINATE=5.2.*
   - ILLUMINATE=5.3.*
+  - ILLUMINATE=5.4.27
   - ILLUMINATE=5.4.36
   #- ILLUMINATE=5.5.*
   #- ILLUMINATE=5.6.*
@@ -36,6 +37,9 @@ matrix:
       env: ILLUMINATE=5.3.*
     - php: 5.5.9
       env: ILLUMINATE=5.4.36
+    - php: 5.5.9
+      env: ILLUMINATE=5.4.27
+
 #  allow_failures:
     - php: 5.5.9
       env: ILLUMINATE=dev-master
