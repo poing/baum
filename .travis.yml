@@ -2,9 +2,16 @@ language: php
 
 php:
   - 5.5.9
-  #- 5.6
+  - 5.6
   #- 7.0
-  #- hhvm
+  - hhvm
+
+# optionally set up exclusions and allowed failures in the matrix
+matrix:
+  exclude:
+    - php: 5.6
+  allow_failures:
+    - php: hhvm
 
 before_script:
   - travis_retry composer self-update
@@ -16,3 +23,7 @@ script:
 
 after_success:
   - travis_retry php vendor/bin/php-coveralls
+  
+# configure notifications (email, IRC, campfire etc)
+notifications:
+  irc: "irc.freenode.org#poing"
