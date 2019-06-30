@@ -1,8 +1,8 @@
 # Baum
 
-[![Build Status](https://travis-ci.com/poing/baum.svg?branch=master)](https://travis-ci.com/poing/baum)
-[![Coverage Status](https://coveralls.io/repos/github/poing/baum/badge.svg?branch=master)](https://coveralls.io/github/poing/baum?branch=master)
-[![StyleCI](https://github.styleci.io/repos/162517256/shield?branch=master)](https://github.styleci.io/repos/162517256)
+[![Build Status](https://travis-ci.com/poing/baum.svg?branch=1.1)](https://travis-ci.com/poing/baum)
+[![Coverage Status](https://coveralls.io/repos/github/poing/baum/badge.svg?branch=1.1)](https://coveralls.io/github/poing/baum?branch=1.1)
+[![StyleCI](https://github.styleci.io/repos/162517256/shield?branch=1.1)](https://github.styleci.io/repos/162517256)
 
 ## Forked from [etrepat/baum](https://github.com/etrepat/baum) - Continuing development and fixing failing unit tests for Laravel 5.x (Currently supports Laravel 5.2 - 5.4)
 
